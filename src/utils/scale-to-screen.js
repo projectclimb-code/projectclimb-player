@@ -6,7 +6,6 @@ export function scaleToScreen(node, settings, zoom) {
     x: settings.screenWidth / 2,
     y: settings.screenHeight / 2,
   })
-  node.rotation(90)
   node.scale({
     x: (settings.screenHeight / settings.wallWidth) * zoom,
     y: (settings.screenHeight / settings.wallWidth) * zoom,

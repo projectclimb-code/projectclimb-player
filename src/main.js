@@ -19,7 +19,7 @@ const wallGrid = createGridLayer({
   width: settings.wallWidth,
   height: settings.wallHeight,
   frequency: wallGridFreq, // horizontal spacing (x direction)
-  color: 'yellow',
+  color: 'black',
   lineWidth: 2,
   bottom: true,
 })
@@ -29,19 +29,29 @@ const rect = new Konva.Rect({
   y: 0,
   width: settings.wallWidth,
   height: settings.wallHeight,
-  fill: 'white',
-  stroke: 'red',
+  fill: 'red',
   strokeWidth: 4,
   opacity: 0.5,
 })
 
+const rect2 = new Konva.Rect({
+  x: 0,
+  y: 0,
+  width: settings.screenWidth,
+  height: settings.screenHeight,
+  fill: 'white',
+  strokeWidth: 4,
+  opacity: 1,
+})
+
 scaleToScreen(rect, settings, zoom)
 scaleToScreen(wallGrid, settings, zoom)
-// layer.add(rect2)
-// layer.add(wallGrid)
-// layer.add(rect)
+layer.add(rect2)
+
+layer.add(rect)
 // layer.add(gridLayer)
 stage.add(layer)
+layer.add(wallGrid)
 
 stage.batchDraw()
 
