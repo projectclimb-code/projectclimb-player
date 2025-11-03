@@ -1,12 +1,7 @@
-export class Settings {
-  constructor() {
-    if (Settings._instance) {
-      return Settings._instance
-    }
-    Settings._instance = this
-    this.screenWidth = window.innerWidth
-    this.screenHeight = window.innerHeight
-    this.wallWidth = 2500
-    this.wallHeight = 3330
-  }
+export const settings = {
+  screenWidth: window.innerWidth,
+  screenHeight: window.innerHeight,
+  wallWidth: 2500,
+  wallHeight: 3330,
+  gridFrequency: 200,
 }
