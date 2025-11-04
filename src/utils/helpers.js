@@ -46,7 +46,6 @@ export function createHelpers(layer) {
 
   websocketService.subscribe((data) => {
     if (data.type === 'display') {
-      console.log('Display action received:', data)
       switch (data.layer) {
         case 'background':
           if (data.color) {
@@ -66,7 +65,8 @@ export function createHelpers(layer) {
           wallGrid.visible(!wallGrid.visible())
           break
         default:
-          console.warn('Unknown display action:', data.action)
+          // console.warn('Unknown display action:', data.action)
+          break
       }
     }
   })

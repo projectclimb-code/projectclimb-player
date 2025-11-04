@@ -13,6 +13,16 @@ export function createGridLayer({
   gridLayer.height(height)
   gridLayer.width(width)
 
+  const wallBackground = new Konva.Rect({
+    x: 0,
+    y: 0,
+    width: width,
+    height: height,
+    stroke: 'white',
+    strokeWidth: lineWidth,
+    opacity: 1,
+  })
+
   // ---- Vertical lines (left → right, offset applied) ----
   for (let x = xOffset; x <= width; x += frequency) {
     gridLayer.add(
@@ -34,6 +44,6 @@ export function createGridLayer({
       }),
     )
   }
-
+  gridLayer.add(wallBackground)
   return gridLayer
 }

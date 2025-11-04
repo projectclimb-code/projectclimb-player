@@ -11,7 +11,7 @@ export async function loadHolds() {
 
   // 4️⃣ Find all <path> elements
   const paths = svgDoc.querySelectorAll('path')
-
+  const holds = []
   const holdsgroup = new Konva.Group()
   paths.forEach((p, i) => {
     // Get basic attributes
@@ -49,9 +49,18 @@ export async function loadHolds() {
     konvaPath.y(konvaPath.y() + offsetShiftY)
 
     holdsgroup.add(konvaPath)
+    holds.push(konvaPath)
   })
+
+  const state = holds.map((hold) => ({
+    node: hold,
+    id: hold.id(),
+    // to: Math.random() < 0.5 ? 1 : -1,
+    progress: 0,
+    direction: Math.random() < 0.5 ? 1 : -1,
+  }))
   holdsgroup.width(settings.wallWidth)
   holdsgroup.height(settings.wallHeight)
 
-  return holdsgroup
+  return { holdsGroup: holdsgroup, state }
 }
