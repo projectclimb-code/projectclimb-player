@@ -5,6 +5,7 @@ import { websocketService } from './services/ws.service'
 import { loadHolds } from './holds/load-hold'
 import { createHelpers } from './utils/helpers'
 import { setupHolds } from './holds/setup-holds'
+import { loadFootholds } from './holds/load-footholds'
 
 websocketService.connect(import.meta.env.VITE_WS_BASE_URL || 'ws://localhost:8080')
 
@@ -19,9 +20,12 @@ stage.add(layer)
 createHelpers(layer)
 
 async function initialize() {
+  const { holdsFootGroup } = await loadFootholds(stage)
   const { holdsGroup, state } = await loadHolds()
   setupHolds(state, stage)
   scaleToScreen(holdsGroup, settings)
+  scaleToScreen(holdsFootGroup, settings)
+  layer.add(holdsFootGroup)
   layer.add(holdsGroup)
   stage.batchDraw()
 }
