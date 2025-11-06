@@ -23,8 +23,8 @@ export async function loadFootholds(stage) {
 
     const pp = paper.project.importSVG(p)
     const d = PaperOffset.offset(pp, 22, { miterLimit: 10 }).pathData
-    const fill = p.getAttribute('fill') || 'white'
-    const stroke = p.getAttribute('stroke') || 'black'
+    // const fill = p.getAttribute('fill') || 'white'
+    const stroke = p.getAttribute('stroke') || 'transparent'
     const strokeWidth = parseFloat(p.getAttribute('stroke-width') || 1)
 
     // 5️⃣ Create Konva.Path

@@ -6,27 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite App</title>
     <style>
-      #canvasOutput {
-        position: fixed; /* stays fixed while scrolling */
-        top: 0;
-        left: 0;
-        width: 100vw; /* full window width */
-        height: 100vh; /* full window height */
-        z-index: 9999; /* stays on top if needed */
-        pointer-events: none;
-        background-color: black;
-      }
       body,
       html {
         margin: 0;
         padding: 0;
         background-color: black;
       }
+      #poseCanvas {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      #videoElement {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%) translateY(-5px);
+      }
     </style>
   </head>
   <body>
-    <div id="app"></div>
     <script type="module" src="/src/main.js"></script>
     <div id="drawingContainer"></div>
+    <canvas id="poseCanvas"></canvas>
+    <video id="videoElement"></video>
   </body>
 </html>
