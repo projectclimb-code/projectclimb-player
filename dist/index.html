@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        background-color: black;
+      }
+      #poseCanvas {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      #videoElement {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%) translateY(-5px);
+      }
+    </style>
+    <script type="module" crossorigin src="/assets/index-DSaA1_3h.js"></script>
+  </head>
+  <body>
+    <div id="drawingContainer"></div>
+    <canvas id="poseCanvas"></canvas>
+    <video id="videoElement"></video>
+  </body>
+</html>
