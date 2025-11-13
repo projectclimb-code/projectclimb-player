@@ -13,15 +13,14 @@ export function setupPoseCanvas() {
   // ctx.fillRect(0, 0, canvas.width, canvas.height)
   websocketService.subscribe((data) => {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
-    if (data.type === 'pose') {
-      drawConnectors(ctx, data.landmarks, POSE_CONNECTIONS, {
-        color: '#00FF00',
-        lineWidth: 4,
-      })
-      drawLandmarks(ctx, data.landmarks, {
-        color: '#f2ff00ff',
-        lineWidth: 2,
-      })
-    }
+
+    drawConnectors(ctx, data.pose, POSE_CONNECTIONS, {
+      color: '#00FF00',
+      lineWidth: 4,
+    })
+    drawLandmarks(ctx, data.pose, {
+      color: '#f2ff00ff',
+      lineWidth: 2,
+    })
   })
 }
