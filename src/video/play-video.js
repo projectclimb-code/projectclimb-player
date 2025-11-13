@@ -3,6 +3,9 @@ import { websocketService } from '@/services/ws.service'
 const videoElement = document.getElementById('videoElement')
 const videos = [69, 75, 76, 77, 78, 79, 80]
 let curentVideoIndex = 0
+videoElement.autoplay = true
+videoElement.controls = false
+videoElement.muted = true
 
 export function playVideo() {
   videoElement.addEventListener('ended', () => {
