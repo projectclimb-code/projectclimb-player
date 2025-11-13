@@ -15,6 +15,7 @@ const stage = new Konva.Stage({
   container: 'drawingContainer',
   width: window.innerWidth,
   height: window.innerHeight,
+  backgroundColor: 'transparent',
 })
 
 const layer = new Konva.Layer()
@@ -24,7 +25,7 @@ createHelpers(layer)
 async function initialize() {
   const { holdsFootGroup } = await loadFootholds(stage)
   const { holdsGroup, state } = await loadHolds()
-  // playVideo()
+  playVideo()
   setupPoseCanvas()
   setupHolds(state, stage)
   scaleToScreen(holdsGroup, settings)

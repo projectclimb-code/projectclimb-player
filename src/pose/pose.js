@@ -12,10 +12,8 @@ export function setupPoseCanvas() {
   // ctx.fillStyle = 'rgba(232, 0, 0, 1)'
   // ctx.fillRect(0, 0, canvas.width, canvas.height)
   websocketService.subscribe((data) => {
-    console.log('Received pose data:', data)
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     if (data.type === 'pose') {
-      console.log('Drawing pose landmarks')
       drawConnectors(ctx, data.landmarks, POSE_CONNECTIONS, {
         color: '#00FF00',
         lineWidth: 4,

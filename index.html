@@ -10,26 +10,31 @@
       html {
         margin: 0;
         padding: 0;
-        background-color: black;
+        background-color: #000;
       }
       #poseCanvas {
         position: absolute;
-        top: 0;
+        top: -30px;
         left: 50%;
         transform: translateX(-50%);
+        pointer-events: none;
       }
       #videoElement {
         position: absolute;
         top: 0;
         left: 50%;
         transform: translateX(-50%) translateY(-5px);
+        height: 100vh;
+      }
+      #drawingContainer {
+        pointer-events: none;
       }
     </style>
   </head>
   <body>
     <script type="module" src="/src/main.js"></script>
+    <video id="videoElement"></video>
     <div id="drawingContainer"></div>
     <canvas id="poseCanvas"></canvas>
-    <video id="videoElement"></video>
   </body>
 </html>

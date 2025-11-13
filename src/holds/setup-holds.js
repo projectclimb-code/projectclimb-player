@@ -70,8 +70,8 @@ const styles = {
     opacity: 1,
   },
   finish: {
-    fill: '#e6e6f0ff',
-    stroke: '#ffffffff',
+    fill: '#ff5900ff',
+    stroke: '#f00707ff',
     strokeWidth: 12,
     opacity: 1,
   },

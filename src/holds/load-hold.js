@@ -4,7 +4,7 @@ import paper from 'paper'
 import { PaperOffset } from 'paperjs-offset'
 
 export async function loadHolds() {
-  const res = await fetch('wall.svg')
+  const res = await fetch('/wall.svg')
   const svgText = await res.text()
 
   // 3️⃣ Parse SVG text into DOM
@@ -18,7 +18,7 @@ export async function loadHolds() {
   const canvas = document.createElement('canvas')
   paper.setup(canvas)
 
-  paths.forEach((p, i) => {
+  paths.forEach((p) => {
     // Get basic attributes
 
     const pp = paper.project.importSVG(p)
@@ -26,10 +26,10 @@ export async function loadHolds() {
     const fill = p.getAttribute('fill') || 'white'
     const stroke = p.getAttribute('stroke') || 'black'
     const strokeWidth = parseFloat(p.getAttribute('stroke-width') || 1)
-
+    const id = p.getAttribute('id').substring(5)
     // 5️⃣ Create Konva.Path
     const konvaPath = new Konva.Path({
-      id: `${i}`,
+      id: `${id}`,
       data: d,
       fill,
       stroke,
@@ -59,7 +59,7 @@ export async function loadHolds() {
     holds.push(konvaPath)
   })
 
-  paths.forEach((p, i) => {
+  paths.forEach((p) => {
     // Get basic attributes
 
     const pp = paper.project.importSVG(p)
@@ -67,10 +67,10 @@ export async function loadHolds() {
     const fill = p.getAttribute('fill') || 'white'
     const stroke = p.getAttribute('stroke') || 'black'
     const strokeWidth = parseFloat(p.getAttribute('stroke-width') || 1)
-
+    const id = p.getAttribute('id').substring(5)
     // 5️⃣ Create Konva.Path
     const konvaPath = new Konva.Path({
-      id: `${i}`,
+      id: `${id}`,
       data: d,
       fill,
       stroke,
@@ -103,10 +103,8 @@ export async function loadHolds() {
   const state = holds.map((hold) => ({
     node: hold,
     id: hold.id(),
-    // to: Math.random() < 0.5 ? 1 : -1,
-    progress: 0,
-    direction: Math.random() < 0.5 ? 1 : -1,
   }))
+
   holdsgroup.width(settings.wallWidth)
   holdsgroup.height(settings.wallHeight)
 

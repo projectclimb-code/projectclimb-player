@@ -1,63 +1,74 @@
 export class WebSocketService {
   constructor() {
-    this.socket = null
-    this.listeners = new Set()
+    this.sockets = new Map() // key: connectionId, value: { socket, listeners }
   }
 
-  connect(url) {
-    if (this.socket) return // already connected
+  connect(url, connectionId = 'default') {
+    if (this.sockets.has(connectionId)) return // already connected
 
-    this.socket = new WebSocket(url)
-    this.socket.onopen = () => {
-      console.log('[WS] Connected to', url)
+    const socket = new WebSocket(url)
+    const listeners = new Set()
+
+    socket.onopen = () => {
+      console.log(`[WS:${connectionId}] Connected to`, url)
     }
 
-    this.socket.onmessage = (event) => {
+    socket.onmessage = (event) => {
       try {
         const data = JSON.parse(event.data)
-        this.listeners.forEach((cb) => cb(data))
+        listeners.forEach((cb) => cb(data))
       } catch (err) {
-        console.error('[WS] Invalid message', err)
+        console.error(`[WS:${connectionId}] Invalid message`, err)
       }
     }
 
-    this.socket.onclose = () => {
-      console.log('[WS] Disconnected')
-      this.socket = null
+    socket.onclose = () => {
+      console.log(`[WS:${connectionId}] Disconnected`)
+      this.sockets.delete(connectionId)
     }
 
-    this.socket.onerror = (err) => {
-      console.error('[WS] Error:', err)
+    socket.onerror = (err) => {
+      console.error(`[WS:${connectionId}] Error:`, err)
     }
+
+    this.sockets.set(connectionId, { socket, listeners })
   }
 
-  subscribe(callback) {
-    this.listeners.add(callback)
+  subscribe(callback, connectionId = 'default') {
+    const connection = this.sockets.get(connectionId)
+    if (!connection) {
+      console.warn(`[WS] Connection ${connectionId} not found`)
+      return () => {}
+    }
 
-    // Return unsubscribe function
+    connection.listeners.add(callback)
+
     return () => {
-      this.listeners.delete(callback)
+      connection.listeners.delete(callback)
     }
   }
 
-  send(data) {
-    if (this.socket && this.socket.readyState === WebSocket.OPEN) {
-      this.socket.send(JSON.stringify(data))
+  send(data, connectionId = 'default') {
+    const connection = this.sockets.get(connectionId)
+    if (connection?.socket?.readyState === WebSocket.OPEN) {
+      connection.socket.send(JSON.stringify(data))
     } else {
-      console.warn('[WS] Tried to send message but socket not open')
+      console.warn(`[WS:${connectionId}] Tried to send message but socket not open`)
     }
   }
 
-  /**
-   * Close the connection
-   */
-  disconnect() {
-    if (this.socket) {
-      this.socket.close()
-      this.socket = null
+  disconnect(connectionId = 'default') {
+    const connection = this.sockets.get(connectionId)
+    if (connection) {
+      connection.socket.close()
+      this.sockets.delete(connectionId)
     }
+  }
+
+  disconnectAll() {
+    this.sockets.forEach((connection) => connection.socket.close())
+    this.sockets.clear()
   }
 }
 
-// Export a shared instance for use across the app
 export const websocketService = new WebSocketService()
