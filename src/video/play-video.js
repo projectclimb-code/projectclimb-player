@@ -10,10 +10,8 @@ videoElement.muted = true
 export function playVideo() {
   videoElement.addEventListener('ended', () => {
     videoElement.style.display = 'none'
-    //   loadNextVideo()
   })
-
-  loadNextVideo()
+  loadInfoVideo()
 
   videoElement.addEventListener('click', () => {
     console.log('click')
@@ -24,8 +22,8 @@ export function playVideo() {
       videoElement.pause()
     }
   })
+
   websocketService.subscribe((data) => {
-    console.log(data)
     if (data.type === 'video') {
       if (data.action === 'play') {
         videoElement.play()
@@ -37,6 +35,8 @@ export function playVideo() {
         loadPreviousVideo()
       } else if (data.action === 'replay') {
         replayVideo(data.video)
+      } else if (data.action === 'info') {
+        loadInfoVideo()
       }
     }
     if (data.type === 'preview') {
@@ -56,6 +56,14 @@ function loadNextVideo() {
   videoElement.load()
   curentVideoIndex = (curentVideoIndex + 1) % videos.length
   videoElement.style.display = 'block'
+  videoElement.play()
+}
+
+function loadInfoVideo() {
+  videoElement.src = `/videos/anim.mp4`
+  videoElement.load()
+  videoElement.style.display = 'block'
+  videoElement.loop = true
   videoElement.play()
 }
 

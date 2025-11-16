@@ -64,7 +64,7 @@ export async function loadHolds() {
 
     const pp = paper.project.importSVG(p)
     const d = PaperOffset.offset(pp, 0, { miterLimit: 10 }).pathData
-    const fill = p.getAttribute('fill') || 'white'
+    const fill = p.getAttribute('fill') || 'black'
     const stroke = p.getAttribute('stroke') || 'black'
     const strokeWidth = parseFloat(p.getAttribute('stroke-width') || 1)
     const id = p.getAttribute('id').substring(5)
@@ -75,7 +75,6 @@ export async function loadHolds() {
       fill,
       stroke,
       strokeWidth,
-      draggable: true,
     })
     // 2️⃣ Get bounding box
     const box = konvaPath.getClientRect({ skipTransform: true })
