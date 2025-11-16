@@ -22,5 +22,5 @@ export function setupPoseCanvas() {
       color: '#f2ff00ff',
       lineWidth: 2,
     })
-  })
+  }, 'session')
 }

@@ -2,7 +2,7 @@ import { websocketService } from '@/services/ws.service'
 
 export function setupHolds(state, stage) {
   state.forEach((hold) => {
-    assignHoldStyle(hold.node, 'normal')
+    assignHoldStyle(hold.node, 'inactive')
   })
   websocketService.subscribe((data) => {
     if (data.type === 'preview') {
@@ -33,18 +33,11 @@ export function setupHolds(state, stage) {
     if (data.session) {
       state.forEach((hold) => {
         assignHoldStyle(hold.node, 'normal')
-      })
-      data.session.holds.forEach((sessionHold) => {
-        if (sessionHold.status == 'touched') {
-          console.warrning('hold already touched', sessionHold.id)
+        const sessionHold = data.session.holds.find((sh) => sh.id.substring(5) === hold.id)
+        console.log('sessionHold', sessionHold)
+        if (sessionHold) {
+          assignHoldStyle(hold.node, sessionHold.status)
         }
-        const id = sessionHold.id.substring(5)
-        const hold = state.find((h) => h.id === id)
-        if (hold == null) {
-          // console.error('hold not found', id)
-          return
-        }
-        assignHoldStyle(hold.node, 'touched')
       })
       stage.batchDraw()
     }
@@ -90,8 +83,8 @@ const styles = {
     opacity: 1,
   },
   untouched: {
-    fill: '#ffffff77',
-    stroke: '#fff',
+    fill: '#ffffff00',
+    stroke: '#ffffff77',
     strokeWidth: 12,
     opacity: 0,
   },
