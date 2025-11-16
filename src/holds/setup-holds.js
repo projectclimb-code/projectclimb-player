@@ -34,7 +34,10 @@ export function setupHolds(state, stage) {
       state.forEach((hold) => {
         assignHoldStyle(hold.node, 'normal')
         const sessionHold = data.session.holds.find((sh) => sh.id.substring(5) === hold.id)
-        console.log('sessionHold', sessionHold)
+        if (sessionHold.status !== 'untouched') {
+          console.log('sessionHold', sessionHold)
+        }
+
         if (sessionHold) {
           assignHoldStyle(hold.node, sessionHold.status)
         }
@@ -83,10 +86,10 @@ const styles = {
     opacity: 1,
   },
   untouched: {
-    fill: '#ffffff00',
-    stroke: '#ffffff77',
+    fill: '#ffffff33',
+    stroke: '#ffffff00',
     strokeWidth: 12,
-    opacity: 0,
+    opacity: 1,
   },
   touched: {
     fill: '#00ff00',

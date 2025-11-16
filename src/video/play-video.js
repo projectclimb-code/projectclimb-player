@@ -6,6 +6,8 @@ let curentVideoIndex = 0
 videoElement.autoplay = true
 videoElement.controls = false
 videoElement.muted = true
+let lastPose = new Date()
+let videoPlaying = false
 
 export function playVideo() {
   videoElement.addEventListener('ended', () => {
@@ -38,16 +40,28 @@ export function playVideo() {
       } else if (data.action === 'info') {
         loadInfoVideo()
       }
-    }
-    if (data.type === 'preview') {
+    } else if (data.type === 'preview') {
       console.log(data)
       if (data.route.id && videos.includes(data.route.id)) {
         replayVideo(data.route.id)
       } else {
         stopVideo()
       }
+    } else {
+      stopVideo()
     }
   })
+  websocketService.subscribe(() => {
+    stopVideo()
+    lastPose = new Date()
+  }, 'session')
+
+  setInterval(() => {
+    if (new Date() - lastPose > 3000 && !videoPlaying) {
+      videoPlaying = true
+      loadInfoVideo()
+    }
+  }, 1000)
 }
 
 function loadNextVideo() {
@@ -89,4 +103,5 @@ function stopVideo() {
   videoElement.pause()
   videoElement.currentTime = 0
   videoElement.style.display = 'none'
+  videoPlaying = false
 }
