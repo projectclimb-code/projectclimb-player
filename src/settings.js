@@ -4,6 +4,6 @@ export const settings = {
   wallWidth: 2500,
   wallHeight: 3330,
   gridFrequency: 200,
-  beamWidth: 20,
-  beamHeight: 30,
+  beamWidth: 40,
+  beamHeight: 60,
 }
