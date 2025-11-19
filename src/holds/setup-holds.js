@@ -2,7 +2,7 @@ import { websocketService } from '@/services/ws.service'
 
 export function setupHolds(state, stage) {
   state.forEach((hold) => {
-    assignHoldStyle(hold.node, 'inactive')
+    assignHoldStyle(hold.node, 'active')
   })
   websocketService.subscribe((data) => {
     if (data.type === 'preview') {
@@ -62,10 +62,10 @@ const assignHoldStyle = (hold, holdStyle) => {
 
 const styles = {
   inactive: {
-    fill: 'rgba(203, 22, 22, 1)',
-    stroke: 'rgba(219, 19, 19, 1)',
+    fill: 'rgba(255, 255, 255, 1)',
+    stroke: 'rgba(255, 255, 255, 1)',
     strokeWidth: 12,
-    opacity: 0,
+    opacity: 1,
   },
   normal: {
     fill: '#ffffff77',

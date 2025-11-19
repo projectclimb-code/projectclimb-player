@@ -19,19 +19,19 @@ export function setupMasking(layer) {
     rectHeight = rectWidth / 0.75
   }
   const rectR = new Konva.Rect({
-    x: (stageWidth - rectWidth) / 2,
+    x: (stageWidth - rectWidth) / 2 - 20,
     y: (stageHeight - rectHeight) / 2,
-    width: settings.beamWidth,
+    width: settings.beamWidth + 18,
     height: settings.beamHeight,
-    fill: 'red',
+    fill: 'black',
   })
 
   const rectL = new Konva.Rect({
     x: (stageWidth - rectWidth) / 2 + rectWidth - settings.beamWidth,
     y: (stageHeight - rectHeight) / 2,
-    width: settings.beamWidth,
+    width: settings.beamWidth + 18,
     height: settings.beamHeight,
-    fill: 'red',
+    fill: 'black',
   })
   layer.add(rectR)
   layer.add(rectL)
