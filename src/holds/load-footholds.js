@@ -34,6 +34,7 @@ export async function loadFootholds(stage) {
       stroke,
       strokeWidth,
       draggable: true,
+      opacity: 0.5,
     })
 
     // 2️⃣ Get bounding box
@@ -41,14 +42,14 @@ export async function loadFootholds(stage) {
     // compute gradient center and radius
     const cx = box.x + box.width / 2
     const cy = box.y + box.height / 2
-    const radius = Math.max(box.width, box.height) / 2 // cover full shape
+    const radius = Math.max(box.width, box.height) / 3 // cover full shape
 
     // apply radial gradient
     konvaPath.fillRadialGradientStartPoint({ x: cx, y: cy })
     konvaPath.fillRadialGradientEndPoint({ x: cx, y: cy })
     konvaPath.fillRadialGradientStartRadius(0)
     konvaPath.fillRadialGradientEndRadius(radius)
-    konvaPath.fillRadialGradientColorStops([0.4, 'white', 1, 'transparent'])
+    konvaPath.fillRadialGradientColorStops([0.8, 'white', 1, 'transparent'])
     // 3️⃣ Compute center of bounding box
     const centerX = box.x + box.width / 2
     const centerY = box.y + box.height / 2
