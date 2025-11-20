@@ -74,7 +74,7 @@ function loadNextVideo() {
 }
 
 function loadInfoVideo() {
-  videoElement.src = `/videos/anim.mp4`
+  videoElement.src = `/videos/anim2.mp4`
   videoElement.load()
   videoElement.style.display = 'block'
   videoElement.loop = true
