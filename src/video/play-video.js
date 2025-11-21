@@ -53,10 +53,10 @@ export function playVideo() {
       stopVideo()
     }
   })
-  websocketService.subscribe(() => {
-    stopVideo()
-    lastPose = new Date()
-  }, 'session')
+  // websocketService.subscribe(() => {
+  //   stopVideo()
+  //   lastPose = new Date()
+  // }, 'session')
 
   setInterval(() => {
     if (new Date() - lastPose > 1200000 && !videoPlaying) {
