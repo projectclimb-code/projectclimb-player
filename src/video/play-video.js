@@ -26,6 +26,7 @@ export function playVideo() {
   })
 
   websocketService.subscribe((data) => {
+    stopVideo()
     if (data.type === 'video') {
       if (data.action === 'play') {
         videoElement.play()
@@ -57,7 +58,7 @@ export function playVideo() {
   }, 'session')
 
   setInterval(() => {
-    if (new Date() - lastPose > 3000 && !videoPlaying) {
+    if (new Date() - lastPose > 2000 && !videoPlaying) {
       videoPlaying = true
       loadInfoVideo()
     }
