@@ -27,6 +27,7 @@ export function playVideo() {
 
   websocketService.subscribe((data) => {
     stopVideo()
+    lastPose = new Date()
     if (data.type === 'video') {
       if (data.action === 'play') {
         videoElement.play()
