@@ -65,7 +65,7 @@ const styles = {
     fill: 'rgba(255, 255, 255, 0)',
     stroke: 'rgba(255, 255, 255, 1)',
     strokeWidth: 12,
-    opacity: 0.1,
+    opacity: 0,
   },
   normal: {
     fill: '#ffffff77',
