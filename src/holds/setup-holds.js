@@ -29,25 +29,25 @@ export function setupHolds(state, stage) {
     }
     return
   })
-  websocketService.subscribe((data) => {
-    state.forEach((hold) => {
-      assignHoldStyle(hold.node, 'inactive')
-    })
-    if (data.session) {
-      state.forEach((hold) => {
-        assignHoldStyle(hold.node, 'normal')
-        const sessionHold = data.session.holds.find((sh) => sh.id.substring(5) === hold.id)
-        if (sessionHold.status !== 'untouched') {
-          console.log('sessionHold', sessionHold)
-        }
+  // websocketService.subscribe((data) => {
+  //   state.forEach((hold) => {
+  //     assignHoldStyle(hold.node, 'inactive')
+  //   })
+  //   if (data.session) {
+  //     state.forEach((hold) => {
+  //       assignHoldStyle(hold.node, 'normal')
+  //       const sessionHold = data.session.holds.find((sh) => sh.id.substring(5) === hold.id)
+  //       if (sessionHold.status !== 'untouched') {
+  //         console.log('sessionHold', sessionHold)
+  //       }
 
-        if (sessionHold) {
-          assignHoldStyle(hold.node, sessionHold.status)
-        }
-      })
-      stage.batchDraw()
-    }
-  }, 'session')
+  //       if (sessionHold) {
+  //         assignHoldStyle(hold.node, sessionHold.status)
+  //       }
+  //     })
+  //     stage.batchDraw()
+  //   }
+  // }, 'session')
 }
 
 const assignHoldStyle = (hold, holdStyle) => {
