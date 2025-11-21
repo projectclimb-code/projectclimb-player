@@ -59,7 +59,7 @@ export function playVideo() {
   }, 'session')
 
   setInterval(() => {
-    if (new Date() - lastPose > 100000 && !videoPlaying) {
+    if (new Date() - lastPose > 1200000 && !videoPlaying) {
       videoPlaying = true
       loadInfoVideo()
     }
