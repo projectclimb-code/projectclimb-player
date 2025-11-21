@@ -27,7 +27,7 @@ async function initialize() {
   const { holdsFootGroup } = await loadFootholds(stage)
   const { holdsGroup, state } = await loadHolds()
   playVideo()
-  setupPoseCanvas()
+  // setupPoseCanvas()
   setupHolds(state, stage)
 
   scaleToScreen(holdsGroup, settings)
