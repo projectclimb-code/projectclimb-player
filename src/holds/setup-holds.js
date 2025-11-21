@@ -30,6 +30,9 @@ export function setupHolds(state, stage) {
     return
   })
   websocketService.subscribe((data) => {
+    state.forEach((hold) => {
+      assignHoldStyle(hold.node, 'inactive')
+    })
     if (data.session) {
       state.forEach((hold) => {
         assignHoldStyle(hold.node, 'normal')
