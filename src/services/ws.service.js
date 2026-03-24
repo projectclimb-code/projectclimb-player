@@ -4,6 +4,7 @@ export class WebSocketService {
   }
 
   connect(url, connectionId = 'default') {
+    console.log(`[WS:${connectionId}] Connecting to`, url)
     if (this.sockets.has(connectionId)) return // already connected
 
     const socket = new WebSocket(url)

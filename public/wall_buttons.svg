@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="2500"
+   height="3330"
+   viewBox="0 0 2500 3330"
+   version="1.1"
+   id="svg1"
+   xml:space="preserve"
+   sodipodi:docname="wall_buttons.svg"
+   inkscape:version="1.4.2 (ebf0e940, 2025-05-08)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><sodipodi:namedview
+   id="namedview1"
+   pagecolor="#ffffff"
+   bordercolor="#666666"
+   borderopacity="1.0"
+   inkscape:showpageshadow="2"
+   inkscape:pageopacity="0.0"
+   inkscape:pagecheckerboard="0"
+   inkscape:deskcolor="#d1d1d1"
+   inkscape:zoom="0.12322835"
+   inkscape:cx="880.47922"
+   inkscape:cy="1594.6006"
+   inkscape:window-width="1440"
+   inkscape:window-height="814"
+   inkscape:window-x="0"
+   inkscape:window-y="30"
+   inkscape:window-maximized="0"
+   inkscape:current-layer="svg1" />
+   <defs
+   id="defs1"><style
+     id="style1">
+      .hold {
+        fill: #cccccc;
+        stroke: #333333;
+        stroke-width: 2;
+        cursor: pointer;
+      }
+      .hold:hover {
+        fill: #aaaaaa;
+      }
+    </style></defs>
+   
+  <path
+   id="button-1"
+   style="fill:#ff9955;fill-opacity:0.493958;stroke:#333333;stroke-width:3;stroke-linecap:square"
+   class="hold button button1"
+   d="M 2317.4812,1241.7518 H 2467.4812 V 1391.7518 H 2317.4812 Z" />
+
+<path
+   id="button-2"
+   style="fill:#ff9955;fill-opacity:0.493958;stroke:#333333;stroke-width:3;stroke-linecap:square"
+   class="button button2"
+   d="M 2317.4812,1464.1211 H 2467.4812 V 1614.1211 H 2317.4812 Z" />
+<path
+   id="button-3"
+   style="fill:#ff9955;fill-opacity:0.493958;stroke:#333333;stroke-width:3;stroke-linecap:square"
+   class="button button3"
+   d="M 2317.4812,1847.344 H 2467.4812 V 1997.344 H 2317.4812 Z" />
+
+<path
+   id="button-0"
+   style="fill:#ff9955;fill-opacity:0.493958;stroke:#333333;stroke-width:3;stroke-linecap:square"
+   class="button button0"
+   d="M 33.018742,1395.9204 H 183.01874 V 1545.9204 H 33.018742 Z" />
+</svg>
