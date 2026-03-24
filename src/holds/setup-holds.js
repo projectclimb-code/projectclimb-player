@@ -33,16 +33,14 @@ export function setupHolds(state, stage) {
     state.forEach((hold) => {
       assignHoldStyle(hold.node, 'inactive')
     })
-    if (data.session) {
+    console.log(data)
+    if (data) {
       state.forEach((hold) => {
-        assignHoldStyle(hold.node, 'normal')
-        const sessionHold = data.session.holds.find((sh) => sh.id.substring(5) === hold.id)
-        if (sessionHold.status !== 'untouched') {
-          console.log('sessionHold', sessionHold)
-        }
+        assignHoldStyle(hold.node, 'inactive')
+        const sessionHold = data.active_holds.find((sh) => sh === hold.id)
 
         if (sessionHold) {
-          assignHoldStyle(hold.node, sessionHold.status)
+          assignHoldStyle(hold.node, 'normal')
         }
       })
       stage.batchDraw()
