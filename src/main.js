@@ -29,7 +29,7 @@ async function initialize() {
   const { holdsFootGroup } = await loadFootholds(stage)
   const { buttonsGroup } = await loadButtons(stage)
   const { holdsGroup, state } = await loadHolds()
-  const { textGroup } = await loadText()
+  const { textGroup } = await loadText(stage)
 
   // playVideo()
   setupPoseCanvas()

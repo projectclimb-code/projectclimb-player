@@ -17,11 +17,10 @@ export async function loadText(stage) {
   textGroup.width(settings.wallWidth)
   textGroup.height(settings.wallHeight)
   websocketService.subscribe((data) => {
-    if (data.type === 'display' && data.layer === 'text') {
-      textNode.setText(data.text)
-      stage.batchDraw()
-    }
-    return
-  })
+    console.log(data.text)
+    textNode.setText(data.text)
+    stage.batchDraw()
+  }, 'session')
+
   return { textGroup }
 }

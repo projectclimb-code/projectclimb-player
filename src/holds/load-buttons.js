@@ -17,7 +17,6 @@ export async function loadButtons(stage) {
   const buttonsGroup = new Konva.Group()
   const canvas = document.createElement('canvas')
   paper.setup(canvas)
-  console.log(paths)
   paths.forEach((p, i) => {
     // Get basic attributes
 
@@ -26,7 +25,6 @@ export async function loadButtons(stage) {
     // const fill = p.getAttribute('fill') || 'white'
     const stroke = p.getAttribute('stroke') || 'transparent'
     const strokeWidth = parseFloat(p.getAttribute('stroke-width') || 1)
-    console.log( p.getAttribute('id'))
     // 5️⃣ Create Konva.Path
     const konvaPath = new Konva.Path({
       id: `${i}`,
