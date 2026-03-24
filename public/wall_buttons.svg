@@ -20,9 +20,9 @@
    inkscape:pageopacity="0.0"
    inkscape:pagecheckerboard="0"
    inkscape:deskcolor="#d1d1d1"
-   inkscape:zoom="0.12322835"
-   inkscape:cx="880.47922"
-   inkscape:cy="1594.6006"
+   inkscape:zoom="0.092908218"
+   inkscape:cx="1103.2393"
+   inkscape:cy="392.86083"
    inkscape:window-width="1440"
    inkscape:window-height="814"
    inkscape:window-x="0"
@@ -43,26 +43,22 @@
       }
     </style></defs>
    
-  <path
-   id="button-1"
-   style="fill:#ff9955;fill-opacity:0.493958;stroke:#333333;stroke-width:3;stroke-linecap:square"
-   class="hold button button1"
-   d="M 2317.4812,1241.7518 H 2467.4812 V 1391.7518 H 2317.4812 Z" />
+  
+
+
+
+
 
 <path
-   id="button-2"
-   style="fill:#ff9955;fill-opacity:0.493958;stroke:#333333;stroke-width:3;stroke-linecap:square"
-   class="button button2"
-   d="M 2317.4812,1464.1211 H 2467.4812 V 1614.1211 H 2317.4812 Z" />
-<path
-   id="button-3"
-   style="fill:#ff9955;fill-opacity:0.493958;stroke:#333333;stroke-width:3;stroke-linecap:square"
-   class="button button3"
-   d="M 2317.4812,1847.344 H 2467.4812 V 1997.344 H 2317.4812 Z" />
-
-<path
-   id="button-0"
-   style="fill:#ff9955;fill-opacity:0.493958;stroke:#333333;stroke-width:3;stroke-linecap:square"
-   class="button button0"
-   d="M 33.018742,1395.9204 H 183.01874 V 1545.9204 H 33.018742 Z" />
-</svg>
+   id="path1"
+   style="fill:#ff9955;fill-opacity:0.493958;stroke:#333333;stroke-width:2.37463;stroke-linecap:square"
+   d="M 165.25497,1466.405 A 56.788895,56.788895 0 0 1 108.46607,1523.1939 56.788895,56.788895 0 0 1 51.677177,1466.405 56.788895,56.788895 0 0 1 108.46607,1409.6161 56.788895,56.788895 0 0 1 165.25497,1466.405 Z" /><path
+   id="path1-8"
+   style="fill:#ff9955;fill-opacity:0.493958;stroke:#333333;stroke-width:2.37463;stroke-linecap:square"
+   d="M 2451.1339,1542.4216 A 56.788895,56.788895 0 0 1 2394.345,1599.2105 56.788895,56.788895 0 0 1 2337.5561,1542.4216 56.788895,56.788895 0 0 1 2394.345,1485.6327 56.788895,56.788895 0 0 1 2451.1339,1542.4216 Z" /><path
+   id="path1-8-3"
+   style="fill:#ff9955;fill-opacity:0.493958;stroke:#333333;stroke-width:2.37463;stroke-linecap:square"
+   d="M 2451.1339,1922.4148 A 56.788895,56.788895 0 0 1 2394.345,1979.2037 56.788895,56.788895 0 0 1 2337.5561,1922.4148 56.788895,56.788895 0 0 1 2394.345,1865.6259 56.788895,56.788895 0 0 1 2451.1339,1922.4148 Z" /><path
+   id="path1-8-7"
+   style="fill:#ff9955;fill-opacity:0.493958;stroke:#333333;stroke-width:2.37463;stroke-linecap:square"
+   d="M 2451.1339,1321.9594 A 56.788895,56.788895 0 0 1 2394.345,1378.7482 56.788895,56.788895 0 0 1 2337.5561,1321.9594 56.788895,56.788895 0 0 1 2394.345,1265.1705 56.788895,56.788895 0 0 1 2451.1339,1321.9594 Z" /></svg>
