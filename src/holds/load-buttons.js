@@ -19,7 +19,6 @@ export async function loadButtons(stage) {
   paper.setup(canvas)
   paths.forEach((p, i) => {
     // Get basic attributes
-
     const pp = paper.project.importSVG(p)
     const d = PaperOffset.offset(pp, 22, { miterLimit: 10 }).pathData
     // const fill = p.getAttribute('fill') || 'white'
@@ -27,7 +26,7 @@ export async function loadButtons(stage) {
     const strokeWidth = parseFloat(p.getAttribute('stroke-width') || 1)
     // 5️⃣ Create Konva.Path
     const konvaPath = new Konva.Path({
-      id: `${i}`,
+      id: p.id,
       data: d,
       stroke,
       strokeWidth,
@@ -68,27 +67,101 @@ export async function loadButtons(stage) {
     buttonsGroup.add(konvaPath)
     holds.push(konvaPath)
   })
-
-  const state = holds.map((hold) => ({
-    node: hold,
-    id: hold.id(),
-    // to: Math.random() < 0.5 ? 1 : -1,
-    progress: 0,
-    direction: Math.random() < 0.5 ? 1 : -1,
-  }))
+  // const state = holds.map((hold) => ({
+  //   node: hold,
+  //   id: hold.id(),
+  //   // to: Math.random() < 0.5 ? 1 : -1,
+  //   progress: 0,
+  //   direction: Math.random() < 0.5 ? 1 : -1,
+  // }))
   // buttonsGroup.cache({ offset: 110 }) // you MUST cache before filtering
   // buttonsGroup.filters([Konva.Filters.Blur])
   // buttonsGroup.blurRadius(100)
   buttonsGroup.width(settings.wallWidth)
   buttonsGroup.height(settings.wallHeight)
   websocketService.subscribe((data) => {
-    if (data.type === 'display' && data.layer === 'footholds') {
-      holds.forEach((hold) => {
-        hold.visible(!!data.visibility)
-      })
-      stage.batchDraw()
+    // console.log(data.mode)
+    let modeBtm;
+    holds.forEach((p) => {
+      assignHoldStyle(p, 'noraml')
+    })
+    switch (data.mode) {
+      case 'hard':
+        modeBtm = holds.find((p) => { p.id() == 'button1' })
+        assignHoldStyle(modeBtm, 'hard')
+        break;
+      case 'medium':
+        modeBtm = holds.find((p) => { p.id() == 'button2' })
+        assignHoldStyle(modeBtm, 'medium')
+        break;
+      case 'easy':
+        modeBtm = holds.find((p) => { p.id() == 'button3' })
+        assignHoldStyle(modeBtm, 'easy')
+        break;
+      default:
+        break;
     }
+    stage.batchDraw()
     return
-  })
-  return { buttonsGroup, state }
+  }, 'session')
+  return { buttonsGroup }
+}
+const assignHoldStyle = (hold, holdStyle) => {
+  let style = {}
+  if (styles[holdStyle]) {
+    style = styles[holdStyle]
+  } else {
+    style = styles['normal']
+  }
+  // console.log(hold)
+  if (hold) {
+    Object.entries(style).forEach(([key, value]) => {
+      hold.setAttr(key, value)
+    })
+  }
+}
+
+const styles = {
+  inactive: {
+    fill: 'rgba(255, 255, 255, 0)',
+    stroke: 'rgba(255, 255, 255, 1)',
+    strokeWidth: 12,
+    opacity: 0,
+  },
+  normal: {
+    fill: '#ffffff',
+    stroke: '#fff',
+    strokeWidth: 12,
+    opacity: 1,
+  },
+  easy: {
+    fill: '#00ff00',
+    stroke: '#009900',
+    strokeWidth: 12,
+    opacity: 1,
+  },
+  hard: {
+    fill: '#ff5900ff',
+    stroke: '#f00707ff',
+    strokeWidth: 12,
+    opacity: 1,
+  },
+  medium: {
+    fill: '#265af5',
+    stroke: '#2014d2',
+    strokeWidth: 12,
+    opacity: 1,
+  },
+  touched: {
+    fill: '#00ff00',
+    stroke: '#009900',
+    strokeWidth: 12,
+    opacity: 1,
+  },
+  white: {
+    fill: '#ffffff00',
+    stroke: 'white',
+    strokeWidth: 12,
+    opacity: 1,
+  },
 }

@@ -11,6 +11,7 @@ import { playVideo } from './video/play-video'
 import { setupMasking } from './utils/masking'
 import { loadButtons } from './holds/load-buttons'
 import { loadText } from './holds/setup-text'
+import { loadPalms } from './holds/setup-palms'
 
 websocketService.connect(import.meta.env.VITE_WS_BASE_URL || 'ws://localhost:8080')
 websocketService.connect(import.meta.env.VITE_WS_BASE_URL_HOLDS || 'ws://localhost:8080', 'session')
@@ -30,7 +31,7 @@ async function initialize() {
   const { buttonsGroup } = await loadButtons(stage)
   const { holdsGroup, state } = await loadHolds()
   const { textGroup } = await loadText(stage)
-
+  const { palmsGroup } = await loadPalms(stage)
   // playVideo()
   setupPoseCanvas()
   setupHolds(state, stage)
@@ -38,10 +39,13 @@ async function initialize() {
   scaleToScreen(holdsGroup, settings)
   scaleToScreen(holdsFootGroup, settings)
   scaleToScreen(buttonsGroup, settings)
+  scaleToScreen(palmsGroup, settings)
+
   layer.add(buttonsGroup)
   layer.add(holdsFootGroup)
   layer.add(holdsGroup)
   layer.add(textGroup)
+  layer.add(palmsGroup)
 
   setupMasking(layer)
   stage.batchDraw()

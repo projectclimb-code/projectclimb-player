@@ -17,7 +17,6 @@ export async function loadText(stage) {
   textGroup.width(settings.wallWidth)
   textGroup.height(settings.wallHeight)
   websocketService.subscribe((data) => {
-    console.log(data.text)
     textNode.setText(data.text)
     stage.batchDraw()
   }, 'session')
