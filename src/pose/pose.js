@@ -6,7 +6,7 @@ import { settings } from '@/settings'
 export function setupPoseCanvas() {
   const canvas = document.getElementById('poseCanvas')
   canvas.width = settings.wallWidth * (window.innerHeight / settings.wallHeight)
-  canvas.height = window.innerHeight
+  canvas.height = settings.wallHeight * (window.innerHeight / settings.wallHeight)
   const ctx = canvas.getContext('2d')
   let lastPose = new Date()
   setInterval(() => {
@@ -18,7 +18,7 @@ export function setupPoseCanvas() {
     console.log(data)
     lastPose = new Date()
     ctx.clearRect(0, 0, canvas.width, canvas.height)
-
+    console.log(ctx)
     drawConnectors(ctx, data.landmarks, POSE_CONNECTIONS, {
       color: '#00FF00',
       lineWidth: 4,

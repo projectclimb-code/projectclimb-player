@@ -63,7 +63,7 @@ export async function loadButtons(stage) {
   buttonsGroup.width(settings.wallWidth)
   buttonsGroup.height(settings.wallHeight)
   websocketService.subscribe((data) => {
-    // console.log(data)
+    console.log(data)
     holds.forEach((hold) => {
       if (data.mode === hold.id()) {
         assignHoldStyle(hold, hold.id() + '_active')
