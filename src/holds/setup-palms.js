@@ -23,7 +23,6 @@ export async function loadPalms(stage) {
   palmsGroup.width(settings.wallWidth)
   palmsGroup.height(settings.wallHeight)
   websocketService.subscribe((data) => {
-    console.log(data.palms.left_img)
     if (data.palms.left_img) {
       leftPalm.x(data.palms.left_img.x * settings.wallWidth)
       leftPalm.y(data.palms.left_img.y * settings.wallHeight)

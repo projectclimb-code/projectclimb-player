@@ -43,12 +43,6 @@ export async function loadButtons(stage) {
 
     // apply radial gradient
     konvaPath.fill('white')
-    // konvaPath.fillRadialGradientStartPoint({ x: cx, y: cy })
-    // konvaPath.fillRadialGradientEndPoint({ x: cx, y: cy })
-    // konvaPath.fillRadialGradientStartRadius(0)
-    // konvaPath.fillRadialGradientEndRadius(radius)
-    // konvaPath.fillRadialGradientColorStops([0.8, 'white', 1, 'transparent'])
-    // 3️⃣ Compute center of bounding box
     const centerX = box.x + box.width / 2
     const centerY = box.y + box.height / 2
 
@@ -67,40 +61,21 @@ export async function loadButtons(stage) {
     buttonsGroup.add(konvaPath)
     holds.push(konvaPath)
   })
-  // const state = holds.map((hold) => ({
-  //   node: hold,
-  //   id: hold.id(),
-  //   // to: Math.random() < 0.5 ? 1 : -1,
-  //   progress: 0,
-  //   direction: Math.random() < 0.5 ? 1 : -1,
-  // }))
-  // buttonsGroup.cache({ offset: 110 }) // you MUST cache before filtering
-  // buttonsGroup.filters([Konva.Filters.Blur])
-  // buttonsGroup.blurRadius(100)
+  holds.forEach((hold) => {
+    assignHoldStyle(hold, hold.id() + '_inactive')
+  })
   buttonsGroup.width(settings.wallWidth)
   buttonsGroup.height(settings.wallHeight)
   websocketService.subscribe((data) => {
-    // console.log(data.mode)
-    let modeBtm;
-    holds.forEach((p) => {
-      assignHoldStyle(p, 'noraml')
+    console.log(data)
+    holds.forEach((hold) => {
+      if (data.mode === hold.id()) {
+        assignHoldStyle(hold, hold.id() + '_active')
+      } else {
+        assignHoldStyle(hold, hold.id() + '_inactive')
+      }
+
     })
-    switch (data.mode) {
-      case 'hard':
-        modeBtm = holds.find((p) => { p.id() == 'button1' })
-        assignHoldStyle(modeBtm, 'hard')
-        break;
-      case 'medium':
-        modeBtm = holds.find((p) => { p.id() == 'button2' })
-        assignHoldStyle(modeBtm, 'medium')
-        break;
-      case 'easy':
-        modeBtm = holds.find((p) => { p.id() == 'button3' })
-        assignHoldStyle(modeBtm, 'easy')
-        break;
-      default:
-        break;
-    }
     stage.batchDraw()
     return
   }, 'session')
@@ -122,46 +97,58 @@ const assignHoldStyle = (hold, holdStyle) => {
 }
 
 const styles = {
-  inactive: {
-    fill: 'rgba(255, 255, 255, 0)',
-    stroke: 'rgba(255, 255, 255, 1)',
-    strokeWidth: 12,
-    opacity: 0,
-  },
   normal: {
     fill: '#ffffff',
     stroke: '#fff',
     strokeWidth: 12,
     opacity: 1,
   },
-  easy: {
+  easy_active: {
     fill: '#00ff00',
     stroke: '#009900',
     strokeWidth: 12,
     opacity: 1,
   },
-  hard: {
+  hard_active: {
     fill: '#ff5900ff',
     stroke: '#f00707ff',
     strokeWidth: 12,
     opacity: 1,
   },
-  medium: {
+  medium_active: {
     fill: '#265af5',
     stroke: '#2014d2',
     strokeWidth: 12,
     opacity: 1,
   },
-  touched: {
-    fill: '#00ff00',
+  easy_inactive: {
+    fill: '#ffffff',
     stroke: '#009900',
     strokeWidth: 12,
     opacity: 1,
   },
-  white: {
-    fill: '#ffffff00',
-    stroke: 'white',
+  hard_inactive: {
+    fill: 'rgb(255, 255, 255)',
+    stroke: '#f00707ff',
     strokeWidth: 12,
     opacity: 1,
   },
+  medium_inactive: {
+    fill: '#ffffff',
+    stroke: '#2014d2',
+    strokeWidth: 12,
+    opacity: 1,
+  },
+  draw_active: {
+    fill: '#adbbe5',
+    stroke: '#2014d2',
+    strokeWidth: 12,
+    opacity: 1,
+  },
+  draw_inactive: {
+    fill: '#ffffff',
+    stroke: '#2014d2',
+    strokeWidth: 12,
+    opacity: 1,
+  }
 }
