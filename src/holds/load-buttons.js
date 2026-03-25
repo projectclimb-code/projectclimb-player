@@ -22,14 +22,11 @@ export async function loadButtons(stage) {
     const pp = paper.project.importSVG(p)
     const d = PaperOffset.offset(pp, 22, { miterLimit: 10 }).pathData
     // const fill = p.getAttribute('fill') || 'white'
-    const stroke = p.getAttribute('stroke') || 'transparent'
-    const strokeWidth = parseFloat(p.getAttribute('stroke-width') || 1)
+
     // 5️⃣ Create Konva.Path
     const konvaPath = new Konva.Path({
       id: p.id,
       data: d,
-      stroke,
-      strokeWidth,
       draggable: true,
       opacity: 0.5,
     })
@@ -39,10 +36,9 @@ export async function loadButtons(stage) {
     // compute gradient center and radius
     const cx = box.x + box.width / 2
     const cy = box.y + box.height / 2
-    const radius = Math.max(box.width, box.height) / 3 // cover full shape
+
 
     // apply radial gradient
-    konvaPath.fill('white')
     const centerX = box.x + box.width / 2
     const centerY = box.y + box.height / 2
 
@@ -67,7 +63,7 @@ export async function loadButtons(stage) {
   buttonsGroup.width(settings.wallWidth)
   buttonsGroup.height(settings.wallHeight)
   websocketService.subscribe((data) => {
-    console.log(data)
+    // console.log(data)
     holds.forEach((hold) => {
       if (data.mode === hold.id()) {
         assignHoldStyle(hold, hold.id() + '_active')
@@ -88,7 +84,6 @@ const assignHoldStyle = (hold, holdStyle) => {
   } else {
     style = styles['normal']
   }
-  // console.log(hold)
   if (hold) {
     Object.entries(style).forEach(([key, value]) => {
       hold.setAttr(key, value)

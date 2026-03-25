@@ -7,10 +7,7 @@ export function setupPoseCanvas() {
   const canvas = document.getElementById('poseCanvas')
   canvas.width = settings.wallWidth * (window.innerHeight / settings.wallHeight)
   canvas.height = window.innerHeight
-  // Get the 2D drawing context
   const ctx = canvas.getContext('2d')
-  // ctx.fillStyle = 'rgba(232, 0, 0, 1)'
-  // ctx.fillRect(0, 0, canvas.width, canvas.height)
   let lastPose = new Date()
   setInterval(() => {
     if (new Date() - lastPose > 2000) {
@@ -18,16 +15,17 @@ export function setupPoseCanvas() {
     }
   }, 1000)
   websocketService.subscribe((data) => {
+    console.log(data)
     lastPose = new Date()
     ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-    drawConnectors(ctx, data.pose, POSE_CONNECTIONS, {
+    drawConnectors(ctx, data.landmarks, POSE_CONNECTIONS, {
       color: '#00FF00',
       lineWidth: 4,
     })
-    drawLandmarks(ctx, data.pose, {
+    drawLandmarks(ctx, data.landmarks, {
       color: '#f2ff00ff',
       lineWidth: 2,
     })
-  }, 'session')
+  }, 'pose')
 }

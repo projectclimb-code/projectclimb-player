@@ -15,6 +15,7 @@ import { loadPalms } from './holds/setup-palms'
 
 websocketService.connect(import.meta.env.VITE_WS_BASE_URL || 'ws://localhost:8080')
 websocketService.connect(import.meta.env.VITE_WS_BASE_URL_HOLDS || 'ws://localhost:8080', 'session')
+websocketService.connect(import.meta.env.VITE_WS_BASE_URL_POSE || 'ws://localhost:8080', 'pose')
 const stage = new Konva.Stage({
   container: 'drawingContainer',
   width: window.innerWidth,

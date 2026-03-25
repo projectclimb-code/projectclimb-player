@@ -39,7 +39,7 @@ export class WebSocketService {
     const connection = this.sockets.get(connectionId)
     if (!connection) {
       console.warn(`[WS] Connection ${connectionId} not found`)
-      return () => {}
+      return () => { }
     }
 
     connection.listeners.add(callback)
