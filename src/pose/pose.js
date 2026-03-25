@@ -18,7 +18,6 @@ export function setupPoseCanvas() {
     console.log(data)
     lastPose = new Date()
     ctx.clearRect(0, 0, canvas.width, canvas.height)
-    console.log(ctx)
     drawConnectors(ctx, data.landmarks, POSE_CONNECTIONS, {
       color: '#00FF00',
       lineWidth: 4,

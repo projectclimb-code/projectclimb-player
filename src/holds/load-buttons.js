@@ -135,7 +135,7 @@ const styles = {
     opacity: 1,
   },
   draw_active: {
-    fill: '#adbbe5',
+    fill: '#143ebd',
     stroke: '#2014d2',
     strokeWidth: 12,
     opacity: 1,
