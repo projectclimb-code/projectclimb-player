@@ -35,7 +35,7 @@ async function initialize() {
   const { textGroup } = await loadText(stage)
   const { palmsGroup } = await loadPalms(stage)
   // playVideo()
-  setupPoseCanvas()
+  // setupPoseCanvas()
   setupHolds(state, stage)
   scaleToScreen(textGroup, settings)
   scaleToScreen(holdsGroup, settings)

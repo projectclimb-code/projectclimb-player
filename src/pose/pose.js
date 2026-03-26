@@ -16,9 +16,9 @@ export function setupPoseCanvas() {
     }
   }, 1000)
   websocketService.subscribe((data) => {
-    console.log(data)
+    // console.log(data)
     lastPose = new Date()
-    // ctx.clearRect(0, 0, canvas.width, canvas.height)
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
     // ctx.fillStyle = 'rgba(172, 27, 27, 0.36)'
     // ctx.fillRect(0, 0, canvas.width, canvas.height)
     drawConnectors(ctx, data.landmarks, POSE_CONNECTIONS, {

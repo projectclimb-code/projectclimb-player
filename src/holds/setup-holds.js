@@ -34,6 +34,7 @@ export function setupHolds(state, stage) {
     state.forEach((hold) => {
       assignHoldStyle(hold.node, 'inactive')
     })
+    console.log(data);
     if (data) {
       state.forEach((hold) => {
         assignHoldStyle(hold.node, 'inactive')
