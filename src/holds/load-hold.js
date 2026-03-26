@@ -60,8 +60,6 @@ export async function loadHolds() {
   })
 
   paths.forEach((p) => {
-    // Get basic attributes
-
     const pp = paper.project.importSVG(p)
     const d = PaperOffset.offset(pp, 0, { miterLimit: 10 }).pathData
     const fill = p.getAttribute('fill') || 'black'
