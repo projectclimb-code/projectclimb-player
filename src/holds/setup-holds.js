@@ -4,31 +4,32 @@ export function setupHolds(state, stage) {
   state.forEach((hold) => {
     assignHoldStyle(hold.node, 'normal')
   })
-  // websocketService.subscribe((data) => {
-  //   if (data.type === 'preview') {
-  //     state.forEach((hold) => {
-  //       const updatedHold = data.route.data.problem.holds.find((h) => h.id === hold.id)
-  //       if (updatedHold) {
-  //         assignHoldStyle(hold.node, updatedHold.type)
-  //       } else {
-  //         assignHoldStyle(hold.node, 'inactive')
-  //       }
-  //     })
-  //     stage.batchDraw()
-  //   }
-  //   if (data.type === 'display' && data.layer === 'holds') {
-  //     if (data.visibility) {
-  //       state.forEach((hold) => {
-  //         assignHoldStyle(hold.node, 'normal')
-  //       })
-  //     } else {
-  //       state.forEach((hold) => {
-  //         assignHoldStyle(hold.node, 'inactive')
-  //       })
-  //     }
-  //   }
-  //   return
-  // })
+  websocketService.subscribe((data) => {
+    if (data.type === 'preview') {
+      state.forEach((hold) => {
+        const updatedHold = data.route.data.problem.holds.find((h) => h.id === hold.id)
+        console.log(updatedHold)
+        if (updatedHold) {
+          assignHoldStyle(hold.node, updatedHold.type)
+        } else {
+          assignHoldStyle(hold.node, 'inactive')
+        }
+      })
+      stage.batchDraw()
+    }
+    if (data.type === 'display' && data.layer === 'holds') {
+      if (data.visibility) {
+        state.forEach((hold) => {
+          assignHoldStyle(hold.node, 'normal')
+        })
+      } else {
+        state.forEach((hold) => {
+          assignHoldStyle(hold.node, 'inactive')
+        })
+      }
+    }
+    return
+  })
 
   // websocketService.subscribe((data) => {
   //   state.forEach((hold) => {
