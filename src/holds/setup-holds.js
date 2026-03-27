@@ -2,7 +2,7 @@ import { websocketService } from '@/services/ws.service'
 
 export function setupHolds(state, stage) {
   state.forEach((hold) => {
-    assignHoldStyle(hold.node, 'inactive')
+    assignHoldStyle(hold.node, 'normal')
   })
   websocketService.subscribe((data) => {
     if (data.type === 'preview') {

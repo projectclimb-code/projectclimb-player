@@ -18,46 +18,46 @@ export async function loadHolds() {
   const canvas = document.createElement('canvas')
   paper.setup(canvas)
 
-  paths.forEach((p) => {
-    // Get basic attributes
+  // paths.forEach((p) => {
+  //   // Get basic attributes
 
-    const pp = paper.project.importSVG(p)
-    const d = PaperOffset.offset(pp, 22, { miterLimit: 10 }).pathData
-    const fill = p.getAttribute('fill') || 'white'
-    const stroke = p.getAttribute('stroke') || 'black'
-    const strokeWidth = parseFloat(p.getAttribute('stroke-width') || 1)
-    const id = p.getAttribute('id').substring(5)
-    // 5️⃣ Create Konva.Path
-    const konvaPath = new Konva.Path({
-      id: `${id}`,
-      data: d,
-      fill,
-      stroke,
-      strokeWidth,
-      draggable: true,
-    })
-    // 2️⃣ Get bounding box
-    const box = konvaPath.getClientRect({ skipTransform: true })
+  //   const pp = paper.project.importSVG(p)
+  //   const d = PaperOffset.offset(pp, 22, { miterLimit: 10 }).pathData
+  //   const fill = p.getAttribute('fill') || 'white'
+  //   const stroke = p.getAttribute('stroke') || 'black'
+  //   const strokeWidth = parseFloat(p.getAttribute('stroke-width') || 1)
+  //   const id = p.getAttribute('id').substring(5)
+  //   // 5️⃣ Create Konva.Path
+  //   const konvaPath = new Konva.Path({
+  //     id: `${id}`,
+  //     data: d,
+  //     fill,
+  //     stroke,
+  //     strokeWidth,
+  //     draggable: true,
+  //   })
+  //   // 2️⃣ Get bounding box
+  //   const box = konvaPath.getClientRect({ skipTransform: true })
 
-    // 3️⃣ Compute center of bounding box
-    const centerX = box.x + box.width / 2
-    const centerY = box.y + box.height / 2
+  //   // 3️⃣ Compute center of bounding box
+  //   const centerX = box.x + box.width / 2
+  //   const centerY = box.y + box.height / 2
 
-    // 4️⃣ Compute offset shift
-    const offsetShiftX = centerX - konvaPath.x()
-    const offsetShiftY = centerY - konvaPath.y()
+  //   // 4️⃣ Compute offset shift
+  //   const offsetShiftX = centerX - konvaPath.x()
+  //   const offsetShiftY = centerY - konvaPath.y()
 
-    // 5️⃣ Set offset to center
-    konvaPath.offsetX(offsetShiftX)
-    konvaPath.offsetY(offsetShiftY)
+  //   // 5️⃣ Set offset to center
+  //   konvaPath.offsetX(offsetShiftX)
+  //   konvaPath.offsetY(offsetShiftY)
 
-    // 6️⃣ Move path so it visually stays in the same place
-    konvaPath.x(konvaPath.x() + offsetShiftX)
-    konvaPath.y(konvaPath.y() + offsetShiftY)
+  //   // 6️⃣ Move path so it visually stays in the same place
+  //   konvaPath.x(konvaPath.x() + offsetShiftX)
+  //   konvaPath.y(konvaPath.y() + offsetShiftY)
 
-    holdsgroup.add(konvaPath)
-    holds.push(konvaPath)
-  })
+  //   holdsgroup.add(konvaPath)
+  //   holds.push(konvaPath)
+  // })
 
   paths.forEach((p) => {
     const pp = paper.project.importSVG(p)
