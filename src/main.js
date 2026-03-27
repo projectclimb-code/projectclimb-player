@@ -41,12 +41,12 @@ async function initialize() {
   scaleToScreen(holdsGroup, settings)
   // scaleToScreen(holdsFootGroup, settings)
   // scaleToScreen(buttonsGroup, settings)
-  scaleToScreen(palmsGroup, settings)
+  // scaleToScreen(palmsGroup, settings)
 
   // layer.add(buttonsGroup)
   layer.add(holdsGroup)
   layer.add(textGroup)
-  layer.add(palmsGroup)
+  // layer.add(palmsGroup)
 
   setupMasking(layer)
   stage.batchDraw()
