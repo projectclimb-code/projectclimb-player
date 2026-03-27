@@ -2,7 +2,7 @@ export function scaleToScreen(node, settings, zoom = 0.74) {
   node.offsetX(node.width() / 2)
   node.offsetY(node.height() / 2)
   node.position({
-    x: settings.screenWidth / 2 - 190,
+    x: settings.screenWidth / 2 - 200,
     y: settings.screenHeight / 2 - 60,
   })
   node.scale({
