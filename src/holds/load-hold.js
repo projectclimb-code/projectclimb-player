@@ -65,7 +65,7 @@ export async function loadHolds() {
     const fill = p.getAttribute('fill') || 'black'
     const stroke = p.getAttribute('stroke') || 'black'
     const strokeWidth = parseFloat(p.getAttribute('stroke-width') || 1)
-    const id = p.getAttribute('id').substring(5)
+    const id = p.getAttribute('id')
     // 5️⃣ Create Konva.Path
     const konvaPath = new Konva.Path({
       id: `${id}`,

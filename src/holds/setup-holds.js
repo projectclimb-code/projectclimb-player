@@ -8,8 +8,8 @@ export function setupHolds(state, stage) {
     if (data.type === 'preview') {
       state.forEach((hold) => {
         const updatedHold = data.route.data.problem.holds.find((h) => h.id === hold.id)
-        console.log(updatedHold)
         if (updatedHold) {
+          console.log(`Hold ${hold.id} is ${updatedHold.type}`)
           assignHoldStyle(hold.node, updatedHold.type)
         } else {
           assignHoldStyle(hold.node, 'inactive')
