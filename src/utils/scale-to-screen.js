@@ -1,4 +1,4 @@
-export function scaleToScreen(node, settings, zoom = 0.68) {
+export function scaleToScreen(node, settings, zoom = 0.7) {
   node.offsetX(node.width() / 2)
   node.offsetY(node.height() / 2)
   node.position({
