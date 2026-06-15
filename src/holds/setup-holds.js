@@ -72,7 +72,7 @@ const styles = {
   },
   normal: {
     fill: '#ffffff77',
-    stroke: '#fff',
+    stroke: 'rgb(0,255,0)',
     strokeWidth: 12,
     opacity: 1,
   },
