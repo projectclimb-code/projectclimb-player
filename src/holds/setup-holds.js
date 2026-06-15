@@ -66,25 +66,13 @@ const assignHoldStyle = (hold, holdStyle) => {
 const styles = {
   inactive: {
     fill: 'rgba(255, 255, 255, 0)',
-    stroke: 'rgb(0, 255, 4)',
+    stroke: 'rgba(255, 255, 255, 1)',
     strokeWidth: 12,
     opacity: 0,
   },
-  normal1: {
+  normal: {
     fill: '#ffffff77',
-    stroke: 'rgb(255, 5, 251)',
-    strokeWidth: 12,
-    opacity: 1,
-  },
-  normal2: {
-    fill: '#ffffff77',
-    stroke: 'rgb(248, 226, 29)',
-    strokeWidth: 12,
-    opacity: 1,
-  },
-  normal3: {
-    fill: '#ffffff77',
-    stroke: 'rgb(5, 255, 0)',
+    stroke: 'rgb(0,255,0)',
     strokeWidth: 12,
     opacity: 1,
   },
