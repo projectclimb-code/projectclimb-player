@@ -1,8 +1,9 @@
 import { websocketService } from '@/services/ws.service'
 
 export function setupHolds(state, stage) {
+  const style1 = ['normal1', 'normal2', 'normal3'][Math.floor(Math.random() * 3)]
   state.forEach((hold) => {
-    assignHoldStyle(hold.node, ['normal1', 'normal2', 'normal3'][Math.floor(Math.random() * 3)])
+    assignHoldStyle(hold.node, style1)
   })
   websocketService.subscribe((data) => {
     if (data.type === 'preview') {
@@ -10,7 +11,16 @@ export function setupHolds(state, stage) {
         const updatedHold = data.route.data.problem.holds.find((h) => h.id === hold.id)
         if (updatedHold) {
           console.log(`Hold ${hold.id} is ${updatedHold.type}`)
-          assignHoldStyle(hold.node, updatedHold.type)
+          if (updatedHold.type = 'normal') {
+            const style1 = ['normal1', 'normal2', 'normal3'][Math.floor(Math.random() * 3)]
+            assignHoldStyle(hold.node, style1)
+          }
+          else {
+            assignHoldStyle(hold.node, updatedHold.type)
+
+          }
+
+
         } else {
           assignHoldStyle(hold.node, 'inactive')
         }
@@ -18,9 +28,11 @@ export function setupHolds(state, stage) {
       stage.batchDraw()
     }
     if (data.type === 'display' && data.layer === 'holds') {
+      var style2 = ['normal1', 'normal2', 'normal3'][Math.floor(Math.random() * 3)]
+      console.log('asdsad', style2);
       if (data.visibility) {
         state.forEach((hold) => {
-          assignHoldStyle(hold.node, 'normal')
+          assignHoldStyle(hold.node, style)
         })
       } else {
         state.forEach((hold) => {
@@ -73,6 +85,24 @@ const styles = {
   normal: {
     fill: '#ffffff77',
     stroke: 'rgb(0,255,0)',
+    strokeWidth: 12,
+    opacity: 1,
+  },
+  normal1: {
+    fill: '#ffffff77',
+    stroke: 'rgb(255, 0, 255)',
+    strokeWidth: 12,
+    opacity: 1,
+  },
+  normal2: {
+    fill: '#ffffff77',
+    stroke: 'rgb(0,255,0)',
+    strokeWidth: 12,
+    opacity: 1,
+  },
+  normal3: {
+    fill: '#ffffff77',
+    stroke: 'rgb(255, 255, 0)',
     strokeWidth: 12,
     opacity: 1,
   },
